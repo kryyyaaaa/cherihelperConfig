@@ -118,6 +118,121 @@ body {
 	background-color: #0b009e;
 	color: white;
 }
+
+/* Reset and base styles  */
+* {
+	padding: 0px;
+	margin: 0px;
+	border: none;
+}
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+/* Links */
+
+a,
+a:link,
+a:visited {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: none;
+}
+
+a:active {
+	text-decoration: none;
+}
+/* Common */
+
+aside,
+nav,
+footer,
+header,
+section,
+main {
+	display: block;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+	font-size: inherit;
+	font-weight: inherit;
+}
+
+ul,
+ul li {
+	list-style: none;
+}
+
+img {
+	vertical-align: top;
+}
+
+img,
+svg {
+	max-width: 100%;
+	height: auto;
+}
+
+address {
+	font-style: normal;
+}
+
+/* Form */
+
+input,
+textarea,
+button,
+select {
+	font-family: inherit;
+	font-size: inherit;
+	color: inherit;
+	background-color: transparent;
+}
+
+input::-ms-clear {
+	display: none;
+}
+
+button,
+input[type='submit'] {
+	display: inline-block;
+	box-shadow: none;
+	background-color: transparent;
+	background: none;
+	cursor: pointer;
+}
+
+input:focus,
+input:active,
+button:focus,
+button:active {
+	outline: none;
+}
+
+button::-moz-focus-inner {
+	padding: 0;
+	border: 0;
+}
+
+label {
+	cursor: pointer;
+}
+
+legend {
+	display: block;
+}
+
 </style>
 
 <head>
@@ -125,11 +240,15 @@ body {
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="./reset.css">
 	<link rel="stylesheet" href="./index.css">
-	<title>Document</title>
+	<title>TrollHelper</title>
 </head>
 
 <script>
-function getIOSVersion() {
+
+const changeLog = document.querySelector('.change__log')
+const button = document.querySelector('.cheri__button')
+
+            function getIOSVersion() {
                 const userAgent = window.navigator.userAgent;
                 const match = userAgent.match(/(iPad|iPhone|iPod)\s+OS\s+(\d+_+\d+)/);
 
@@ -142,22 +261,41 @@ function getIOSVersion() {
                 return null;
             }
 
-function injct() {
-alert("open standoff, then skip this alert.") 
-let tos = confirm("jjj") 
-if (tos) {
+            function sleep(ms) {
+                return new Promise(resolve => setTimeout(resolve, ms));
+            }
+
+const autoScroll = () => {
+ changeLog.scrollBy(0, 5)
+ let scrolldelay = setTimeout(autoScroll, 4)
+}
+
+button.addEventListener('click', () => {
+changeLog.classList.remove('hidden')
+
+ autoScroll()
+})
+
+async function jb() {
 
 const iosVersion = getIOSVersion();
 
-alert("injected! \n\nthanks for using!\niOS: " + iosVersion + "\nCPU: A7-A12\nTrollstore: not found")} }
+if (iosVersion < 17) {
+await sleep(1000);
+document.getElementById("log").innerText = document.getElementById("log").innerText + '\n [-] iOS ' + iosVersion +' is Unsupported! Supported version: 17 - 17.0.1';} else { 
+await sleep(100); document.getElementById("log").innerText = document.getElementById("log").innerText + '\n [+] Starting exploit...'; 
+await sleep(100); document.getElementById("log").innerText = document.getElementById("log").innerText + '\n [+] Exploiting kfd...'; 
+await sleep(6500); document.getElementById("log").innerText = document.getElementById("log").innerText + '\n [#] Done!'; 
+await sleep(100); document.getElementById("log").innerText = document.getElementById("log").innerText + '\n [+] Patching signatures: 0xd3e3600'; 
+await sleep(100); document.getElementById("log").innerText = document.getElementById("log").innerText + '\n [#] Done!'; 
+await sleep(100); document.getElementById("log").innerText = document.getElementById("log").innerText + '\n [+] Patching signatures: 0xE5df200';
+await sleep(100); document.getElementById("log").innerText = document.getElementById("log").innerText + '\n [+] Try to install sileo'; 
+await sleep(3000); document.getElementById("log").innerText = document.getElementById("log").innerText + '\n [#] Done!'; 
+await sleep(100); document.getElementById("log").innerText = document.getElementById("log").innerText + '\n [+] Installing chenger...'; 
+await sleep(3000); document.getElementById("log").innerText = document.getElementById("log").innerText + '\n [#] Done!'; 
+await sleep(100); document.getElementById("log").innerText = document.getElementById("log").innerText + '\n [#] ReSpring please!';
+}
 
-function jb() {
-
-const iosVersion = getIOSVersion();
-
-if (iosVersion > 17.3) {
-     alert("unsupported")} else { injct() }
-            
 }
 
 function disableScroll() {
@@ -187,13 +325,13 @@ disableScroll()
 			<div class="cheri__contant-wrapper">
 				<h3 class="cheri__content-title"></h3>
 				<div class='change__log'>
-					<h2 class="change__log-title">Changelog</h2>
+					<h2 class="change__log-title">console</h2>
 
-					<h4 class="change__log-info">-added symbows</h4>
-					<h4 class="change__log-info">-crack ios system</h4>
-					<h4 class="change__log-info">-fixed ios support detection</h4>
-					<h4 class="change__log-info">-fixed a bug where text is permently bright</h4>
-					<h4 class="change__log-info">-fixed some offset</h4>
+					<h4 class="change__log-info">=====================</h4>
+					<h4 class="change__log-info">iOS 16.4 support!</h4>
+					<h4 class="change__log-info">Fixed some offsets</h4>
+					<h4 class="change__log-info">Respring button has been removed </h4>
+					<h4 class="change__log-info" id="log"> ===================== </h4>
 				</div>
 				<div class="change__log-size">Download Size: 33 MB</div>
 			</div>
